@@ -1,36 +1,36 @@
 from scipy.stats import wilcoxon
 
-def receber_amostra(nome):
-    print(f"Digite os valores da amostra {nome}, um por linha. Quando terminar, pressione ENTER duas vezes:")
-    dados = []
+def get_sample(name):
+    print(f"Digite os valores da amostra {name}, um por linha. Quando terminar, pressione ENTER duas vezes:")
+    data = []
     while True:
         try:
-            linha = input()
-            if linha == '':
+            row = input()
+            if row == '':
                 break
-            dados.append(int(linha.strip()))
+            data.append(int(row.strip()))
         except ValueError:
             print("Por favor, insira apenas números inteiros.")
-    return dados
+    return data
 
 # Receber amostras
-amostra_A = receber_amostra('A')
-amostra_B = receber_amostra('B')
+sample_A = get_sample('A')
+sample_B = get_sample('B')
 
 # Mostrar as amostras formatadas
-print(f"\nAmostra A formatada: {amostra_A}")
-print(f"Amostra B formatada: {amostra_B}")
+print(f"\nAmostra A formatada: {sample_A}")
+print(f"Amostra B formatada: {sample_B}")
 
 # Teste de Wilcoxon
-estatistica, p_valor = wilcoxon(amostra_A, amostra_B)
+statistic, p_value = wilcoxon(sample_A, sample_B)
 
 # Mostrar resultados
 print(f"\nResultado do Teste de Wilcoxon:")
-print(f"Estatística: {estatistica}")
-print(f"Valor-p: {p_valor}")
+print(f"Estatística: {statistic}")
+print(f"Valor-p: {p_value}")
 
 # Interpretação
-if p_valor < 0.05:
+if p_value < 0.05:
     print("Diferença estatisticamente significativa.")
 else:
     print("Diferença NÃO estatisticamente significativa.")
